@@ -1,0 +1,19 @@
+import '../../domain/models/sample_model.dart';
+import '../mappers/sample_mapper.dart';
+import '../providers/sample_provider.dart';
+
+class SampleRepository {
+  const SampleRepository({
+    required SampleProvider provider,
+    required SampleMapper mapper,
+  })  : _provider = provider,
+        _mapper = mapper;
+
+  final SampleProvider _provider;
+  final SampleMapper _mapper;
+
+  Future<SampleModel> loadSample() async {
+    final data = await _provider.fetchSample();
+    return _mapper.fromMap(data);
+  }
+}

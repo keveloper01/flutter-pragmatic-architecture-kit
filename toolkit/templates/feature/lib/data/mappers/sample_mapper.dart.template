@@ -1,0 +1,12 @@
+import '../../domain/models/sample_model.dart';
+
+class SampleMapper {
+  const SampleMapper();
+
+  SampleModel fromMap(Map<String, Object?> data) {
+    return SampleModel(
+      id: data['id'] as String? ?? '',
+      title: data['title'] as String? ?? '',
+    );
+  }
+}

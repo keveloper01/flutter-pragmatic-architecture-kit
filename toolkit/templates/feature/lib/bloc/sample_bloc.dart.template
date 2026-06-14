@@ -1,0 +1,23 @@
+import '../data/repositories/sample_repository.dart';
+import 'sample_state.dart';
+
+class SampleBloc {
+  SampleBloc({
+    required SampleRepository repository,
+  }) : _repository = repository;
+
+  final SampleRepository _repository;
+
+  SampleState state = const SampleInitial();
+
+  Future<void> load() async {
+    state = const SampleLoading();
+
+    try {
+      final model = await _repository.loadSample();
+      state = SampleLoaded(model);
+    } on Object {
+      state = const SampleFailure('Unable to load sample.');
+    }
+  }
+}

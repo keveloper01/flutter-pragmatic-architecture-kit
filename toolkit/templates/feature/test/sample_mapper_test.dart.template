@@ -1,0 +1,17 @@
+import 'package:flutter_test/flutter_test.dart';
+
+import '../lib/data/mappers/sample_mapper.dart';
+
+void main() {
+  test('maps source data into a model', () {
+    const mapper = SampleMapper();
+
+    final model = mapper.fromMap({
+      'id': 'sample-id',
+      'title': 'Sample title',
+    });
+
+    expect(model.id, 'sample-id');
+    expect(model.title, 'Sample title');
+  });
+}

@@ -1,0 +1,29 @@
+import 'package:flutter/widgets.dart';
+
+import '../../bloc/sample_bloc.dart';
+import '../../bloc/sample_state.dart';
+import '../widgets/sample_content_widget.dart';
+
+class SamplePage extends StatelessWidget {
+  const SamplePage({
+    required this.bloc,
+    super.key,
+  });
+
+  final SampleBloc bloc;
+
+  @override
+  Widget build(BuildContext context) {
+    final state = bloc.state;
+
+    return switch (state) {
+      SampleInitial() || SampleLoading() => const Center(
+          child: Text('Loading'),
+        ),
+      SampleLoaded(:final model) => SampleContentWidget(model: model),
+      SampleFailure(:final message) => Center(
+          child: Text(message),
+        ),
+    };
+  }
+}

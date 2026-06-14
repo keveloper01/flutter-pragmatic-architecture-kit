@@ -1,0 +1,25 @@
+import '../domain/models/sample_model.dart';
+
+sealed class SampleState {
+  const SampleState();
+}
+
+class SampleInitial extends SampleState {
+  const SampleInitial();
+}
+
+class SampleLoading extends SampleState {
+  const SampleLoading();
+}
+
+class SampleLoaded extends SampleState {
+  const SampleLoaded(this.model);
+
+  final SampleModel model;
+}
+
+class SampleFailure extends SampleState {
+  const SampleFailure(this.message);
+
+  final String message;
+}

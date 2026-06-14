@@ -1,0 +1,14 @@
+# Dart
+.dart_tool/
+.packages
+.pub/
+build/
+coverage/
+
+# OS files
+.DS_Store
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.iml

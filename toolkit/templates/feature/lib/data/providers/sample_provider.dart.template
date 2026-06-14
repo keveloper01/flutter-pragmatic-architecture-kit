@@ -1,0 +1,7 @@
+class SampleProvider {
+  const SampleProvider();
+
+  Future<Map<String, Object?>> fetchSample() async {
+    throw UnimplementedError('Connect this provider to API or local storage.');
+  }
+}

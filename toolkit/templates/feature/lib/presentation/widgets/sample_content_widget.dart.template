@@ -1,0 +1,17 @@
+import 'package:flutter/widgets.dart';
+
+import '../../domain/models/sample_model.dart';
+
+class SampleContentWidget extends StatelessWidget {
+  const SampleContentWidget({
+    required this.model,
+    super.key,
+  });
+
+  final SampleModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(model.title);
+  }
+}
