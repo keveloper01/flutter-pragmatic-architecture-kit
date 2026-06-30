@@ -1,6 +1,6 @@
 name: flutter_pragmatic_architecture_kit
 description: A pragmatic CLI for installing and auditing Flutter architecture toolkit scaffolding.
-version: 0.1.0
+version: 0.2.0
 repository: https://github.com/keveloper01/flutter-pragmatic-architecture-kit
 
 environment:

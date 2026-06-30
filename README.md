@@ -97,6 +97,53 @@ fpt feature --name "User Profile"
 
 Creates a feature scaffold using a normalized snake_case name.
 
+It also creates an initial AI specification folder using a numeric feature id:
+
+```text
+specs/001-user-profile/
+├── spec.md
+├── plan.md
+├── tasks.md
+└── data-model.md
+```
+
+## AI-Assisted Development
+
+The AI workflow is local and provider-agnostic. It does not connect to AI APIs. It prepares controlled project context so an assistant can work from specs, rules, skills and architecture boundaries.
+
+```sh
+fpt ai init
+```
+
+Creates `.agents/` with Spanish agents, rules, skills, generated context output and project guidance.
+
+```sh
+fpt ai context --feature <feature-id>
+```
+
+Reads `specs/<feature-id>/` and generates `.agents/generated/current_context.md`.
+
+```sh
+fpt ai validate --feature <feature-id>
+```
+
+Validates that the spec and generated context are ready, and checks basic architecture boundaries.
+
+Example:
+
+```sh
+fpt feature --name customer_profile
+fpt ai init
+fpt ai context --feature 001-customer-profile
+fpt ai validate --feature 001-customer-profile
+```
+
+Flow:
+
+```text
+Especificacion -> Contexto generado -> Implementacion asistida por IA -> Validacion arquitectonica
+```
+
 ## Example
 
 From a Flutter project root:
@@ -106,5 +153,8 @@ fpt install
 fpt doctor
 fpt audit
 fpt feature --name "User Profile"
+fpt ai init
+fpt ai context --feature 001-user-profile
+fpt ai validate --feature 001-user-profile
 flutter analyze
 ```

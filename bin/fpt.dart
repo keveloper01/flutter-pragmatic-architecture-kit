@@ -1,4 +1,5 @@
 import 'package:args/command_runner.dart';
+import 'package:flutter_pragmatic_architecture_kit/commands/ai_command.dart';
 import 'package:flutter_pragmatic_architecture_kit/commands/audit_command.dart';
 import 'package:flutter_pragmatic_architecture_kit/commands/create_feature_command.dart';
 import 'package:flutter_pragmatic_architecture_kit/commands/doctor_command.dart';
@@ -11,6 +12,7 @@ void main(List<String> arguments) async {
     'fpt',
     'Flutter Pragmatic Architecture Toolkit.',
   )
+    ..addCommand(AiCommand(logger: logger))
     ..addCommand(InstallCommand(logger: logger))
     ..addCommand(DoctorCommand(logger: logger))
     ..addCommand(AuditCommand(logger: logger))

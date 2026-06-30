@@ -102,6 +102,11 @@ class CreateFeatureCommand extends Command<void> {
       p.join('specs', featureName, 'mini-spec.md'):
           _miniSpecContent(featureName),
       p.join('specs', featureName, 'tasks.md'): _tasksContent(featureName),
+      p.join('specs', _aiSpecId(featureName), 'spec.md'): _aiSpecContent(),
+      p.join('specs', _aiSpecId(featureName), 'plan.md'): _aiPlanContent(),
+      p.join('specs', _aiSpecId(featureName), 'tasks.md'): _aiTasksContent(),
+      p.join('specs', _aiSpecId(featureName), 'data-model.md'):
+          _aiDataModelContent(),
     };
 
     for (final entry in specFiles.entries) {
@@ -137,6 +142,10 @@ class CreateFeatureCommand extends Command<void> {
     return withWordBoundaries
         .replaceAll(RegExp(r'_+'), '_')
         .replaceAll(RegExp(r'^_|_$'), '');
+  }
+
+  String _aiSpecId(String featureName) {
+    return '001-${featureName.replaceAll('_', '-')}';
   }
 
   String _miniSpecContent(String featureName) {
@@ -218,6 +227,131 @@ UI / Page / Widget -> BLoC -> Repository -> Provider -> API / Local Storage -> M
 - [ ] Add mapper tests for source data conversion.
 - [ ] Run Flutter analysis.
 - [ ] Run relevant Flutter tests.
+''';
+  }
+
+  String _aiSpecContent() {
+    return '''
+# Especificacion de Feature
+
+## Objetivo
+
+Describe el resultado que debe lograr la feature.
+
+## Problema que resuelve
+
+Describe el problema de usuario o de producto que justifica esta feature.
+
+## Alcance
+
+Lista los comportamientos incluidos.
+
+## Fuera de alcance
+
+Lista decisiones o comportamientos que no forman parte de esta iteracion.
+
+## Criterios de aceptacion
+
+- [ ] La feature cumple el flujo principal esperado.
+- [ ] Los estados de carga, exito, vacio y error estan definidos cuando corresponda.
+- [ ] La implementacion respeta las capas del toolkit.
+
+## Estados de interfaz
+
+- Loading:
+- Success:
+- Empty:
+- Error:
+
+## Casos de error
+
+- Error recuperable:
+- Error no recuperable:
+- Reintento:
+
+## Dependencias
+
+- APIs:
+- Almacenamiento local:
+- Permisos:
+''';
+  }
+
+  String _aiPlanContent() {
+    return '''
+# Plan Tecnico
+
+## Arquitectura propuesta
+
+UI / Page / Widget -> BLoC -> Repository -> Provider -> API / Local Storage -> Mapper -> Model
+
+## Capas involucradas
+
+- Presentacion:
+- BLoC:
+- Repository:
+- Provider:
+- Mapper:
+- Model:
+
+## Flujo de datos
+
+Describe como se mueve la informacion entre capas.
+
+## Integraciones externas
+
+Describe APIs, almacenamiento local o servicios externos si aplican.
+
+## Estrategia de manejo de errores
+
+Describe errores esperados, mensajes y recuperacion.
+
+## Estrategia de pruebas
+
+Describe pruebas de BLoC, repository, mapper y widgets criticos.
+''';
+  }
+
+  String _aiTasksContent() {
+    return '''
+# Tareas de Implementacion
+
+## Pendientes
+
+- [ ] Definir modelo de dominio
+- [ ] Implementar provider
+- [ ] Implementar repository
+- [ ] Implementar mapper
+- [ ] Implementar BLoC
+- [ ] Implementar interfaz
+- [ ] Agregar pruebas
+- [ ] Ejecutar validaciones
+''';
+  }
+
+  String _aiDataModelContent() {
+    return '''
+# Modelo de Datos
+
+## Entidades
+
+Describe entidades internas relevantes.
+
+## Propiedades
+
+Lista propiedades, tipos y nulabilidad.
+
+## Reglas de validacion
+
+Describe reglas de formato, obligatoriedad y consistencia.
+
+## Mapeos
+
+Describe conversiones entre datos externos y modelos internos.
+
+## Ejemplos de datos
+
+Incluye ejemplos genericos cuando ayuden a validar mappers.
 ''';
   }
 

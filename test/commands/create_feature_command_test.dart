@@ -59,6 +59,22 @@ dependencies:
             .existsSync(),
         isTrue,
       );
+      expect(
+        File(p.join(directory.path, 'specs', '001-user-profile', 'spec.md'))
+            .existsSync(),
+        isTrue,
+      );
+      expect(
+        File(p.join(directory.path, 'specs', '001-user-profile', 'plan.md'))
+            .existsSync(),
+        isTrue,
+      );
+      expect(
+        File(p.join(
+                directory.path, 'specs', '001-user-profile', 'data-model.md'))
+            .existsSync(),
+        isTrue,
+      );
     });
   });
 }
